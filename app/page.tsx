@@ -16,7 +16,7 @@ export default function Portfolio() {
         <div className="mt-6 flex gap-4">
           <a href="https://github.com/jayneAnya" target="_blank" rel="noopener noreferrer" className="bg-green-500 px-4 py-2 rounded-xl text-black">GitHub</a>
           <a href="https://www.linkedin.com/in/jane-imoisi/" target="_blank" rel="noopener noreferrer" className="border border-gray-600 px-4 py-2 rounded-xl">LinkedIn</a>
-          <a href="/JANE_ANYANWU.pdf" download className="border border-gray-600 px-4 py-2 rounded-xl hover:bg-white hover:text-black transition">Download CV</a>
+          <a href="/Jane_Anyanwu_Cv.pdf" download className="border border-gray-600 px-4 py-2 rounded-xl hover:bg-white hover:text-black transition">Download CV</a>
         </div>
       </section>
 
