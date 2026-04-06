@@ -171,6 +171,51 @@ export default function Portfolio() {
               <li>Developed core banking services</li>
             </ul>
           </div>
+           {/* Digital Witch */}
+          <div>
+            <h3 className="text-green-400 font-semibold">Digital Witch NG</h3>
+            <p className="text-gray-500 text-sm">Cloud Infrastructure & Automation Engineer | 2025</p>
+            <ul className="text-gray-300 mt-3 space-y-2 list-disc list-inside">
+              <li>Designed end-to-end CI/CD pipelines using GitHub Actions, Docker, AWS ECR, and EKS</li>
+              <li>Provisioned AWS infrastructure using Terraform (EC2, IAM, security groups, EKS)</li>
+              <li>Implemented GitOps workflows with ArgoCD for automated Kubernetes deployments</li>
+              <li>Configured Prometheus and Grafana dashboards for real-time monitoring</li>
+              <li>Automated deployments with Bash scripts, reducing manual setup time by 70%</li>
+            </ul>
+          </div>
+
+          {/* Stanbic */}
+          <div>
+            <h3 className="text-green-400 font-semibold">Stanbic IBTC Bank</h3>
+            <p className="text-gray-500 text-sm">Software Engineer | 2023 – 2024</p>
+            <ul className="text-gray-300 mt-3 space-y-2 list-disc list-inside">
+              <li>Developed containerized microservices with .NET 9, Docker, and OpenShift</li>
+              <li>Contributed to CI/CD pipelines in Azure DevOps, reducing manual deployment effort</li>
+              <li>Integrated Datadog dashboards for system monitoring and performance tracking</li>
+              <li>Built core banking features handling 500K+ daily transactions with high availability</li>
+            </ul>
+          </div>
+
+          {/* Maxfront */}
+          <div>
+            <h3 className="text-green-400 font-semibold">Maxfront Technologies</h3>
+            <p className="text-gray-500 text-sm">Backend Engineer | 2023</p>
+            <ul className="text-gray-300 mt-3 space-y-2 list-disc list-inside">
+              <li>Improved API performance by 35% using Redis caching and async optimizations</li>
+              <li>Performed database tuning and query optimization reducing load by 25%</li>
+              <li>Supported deployment automation and environment setup for internal systems</li>
+            </ul>
+          </div>
+
+          {/* Decagon */}
+          <div>
+            <h3 className="text-green-400 font-semibold">Decagon Institute</h3>
+            <p className="text-gray-500 text-sm">Software Engineer | 2022 – 2023</p>
+            <ul className="text-gray-300 mt-3 space-y-2 list-disc list-inside">
+              <li>Automated developer workflows reducing project setup time by 50%</li>
+              <li>Built backend services with .NET Core and PostgreSQL using RESTful APIs</li>
+            </ul>
+          </div>
 
         </div>
       </section>
