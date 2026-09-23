@@ -22,6 +22,12 @@ pipeline {
             }
         }
 
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t portfolio:${BUILD_NUMBER} .'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying portfolio application...'
