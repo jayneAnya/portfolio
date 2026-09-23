@@ -1,16 +1,16 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        nodejs 'Node22'
+    }
 
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+    stages {
 
         stage('Build') {
             steps {
+                sh 'node -v'
+                sh 'npm -v'
                 sh 'npm ci'
                 sh 'npm run build'
             }
@@ -24,8 +24,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Portfolio deployment stage'
-                echo 'Build artifact is ready for deployment'
+                echo 'Deploying portfolio application...'
+                echo 'Deployment simulation completed.'
             }
         }
     }
