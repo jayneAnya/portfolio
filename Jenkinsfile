@@ -46,6 +46,19 @@ pipeline {
             }
         }
 
+        stage('Archive Artifact') {
+            steps {
+                sh '''
+                    tar -czf portfolio-${BUILD_NUMBER}.tar.gz \
+                        .next/standalone \
+                        .next/static \
+                        public
+                '''
+
+                archiveArtifacts artifacts: 'portfolio-*.tar.gz', fingerprint: true
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying portfolio application...'
