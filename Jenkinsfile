@@ -22,9 +22,27 @@ pipeline {
             }
         }
 
-        stage('Docker Build') {
+        stage('Docker Build & Push') {
             steps {
-                sh 'docker build -t portfolio:${BUILD_NUMBER} .'
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-portfolio',
+                    usernameVariable: 'DOCKER_USERNAME',
+                    passwordVariable: 'DOCKER_PASSWORD'
+                )]) {
+                    sh '''
+                        IMAGE_NAME="$DOCKER_USERNAME/portfolio:${BUILD_NUMBER}"
+
+                        docker build -t "$IMAGE_NAME" .
+
+                        echo "$DOCKER_PASSWORD" | docker login \
+                            --username "$DOCKER_USERNAME" \
+                            --password-stdin
+
+                        docker push "$IMAGE_NAME"
+
+                        docker logout
+                    '''
+                }
             }
         }
 
