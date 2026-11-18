@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jane Anyanwu – Portfolio
 
-## Getting Started
+My personal site: [portfolio-flax-rho-55.vercel.app](https://portfolio-flax-rho-55.vercel.app)
 
-First, run the development server:
+Backend engineer (C# / .NET) in banking and fintech, with hands-on DevOps. The site tells my story, shows my flagship project (SovereignOps), my public DevOps projects and my work experience.
+
+## Tech
+
+- Next.js 16 (App Router) and TypeScript
+- Tailwind CSS 4
+- Self-hosted fonts (Bricolage Grotesque, IBM Plex Sans) via Fontsource, so the build needs no network calls for fonts
+- Hosted on Vercel; built and checked by Jenkins
+
+All page copy lives in `app/content.ts`. Edit that file to update text without touching the layout.
+
+## Run it locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm ci
+npm run dev        # http://localhost:3000
+npm run lint
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## CI/CD with Jenkins
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The `Jenkinsfile` runs on every new commit (Poll SCM, every 5 minutes):
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Build**: `npm ci` and `npm run build` with Node.js 22 (configured as the `Node22` tool in Jenkins).
+2. **Test**: `npm run lint`.
+3. **Docker build and push**: builds the multi-stage `Dockerfile` (standalone Next.js output, runs as a non-root user) and pushes `portfolio:<build number>` to Docker Hub using the `dockerhub-portfolio` Jenkins credential.
+4. **Archive**: packages `.next/standalone`, `.next/static` and `public` as a fingerprinted build artifact.
+5. **Deploy**: placeholder stage; production hosting is on Vercel.
 
-## Learn More
+### Lesson learned
 
-To learn more about Next.js, take a look at the following resources:
+An early build failed because Jenkins used Node.js 18, which Next.js 16 does not support. Installing the NodeJS plugin and pinning the `Node22` tool in the pipeline fixed it.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Screenshots of the pipeline setup and runs are in [`screenshots/`](screenshots).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Run the container
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+docker build -t portfolio .
+docker run -p 3000:3000 portfolio
+```
