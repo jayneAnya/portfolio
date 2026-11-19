@@ -7,7 +7,7 @@ export const profile = {
   email: "janeuanyanwu@gmail.com",
   github: "https://github.com/jayneAnya",
   linkedin: "https://www.linkedin.com/in/anyanwu-jane",
-  cv: "/Jane_Anyanwu_CV.pdf",
+  cv: "/Jane_Anyanwu_Cv.pdf",
   availability:
     "Open to remote roles worldwide, and to roles in Canada, the UK and Europe.",
 };
